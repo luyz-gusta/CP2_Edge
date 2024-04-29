@@ -27,15 +27,15 @@ byte iconLuzMid[8] = { B00000, B00100, B01110, B10001, B11111, B11111, B01110, B
 byte iconLuzLow[8] = { B00000, B00100, B01110, B10001, B10001, B10101, B01110, B01110 };
 
 // Definição dos pinos dos LEDs e da buzina
-int ledVerde = 5;      // LED verde
-int ledAmarelo = 9;    // LED amarelo
+int ledVerde = 13;      // LED verde
+int ledAmarelo = 5;    // LED amarelo
 int ledVermelho = 3;  // LED vermelho
 int buzina = 4;        // Buzina
 
 int intencidadeluz;    // Variável para a intensidade da luz
 
 #define DHTPIN 2
-#define DHTTYPE DHT11   // DHT 11  (AM2302), AM2321
+#define DHTTYPE DHT11   // DHT 22  (AM2302), AM2321
 
 DHT dht(DHTPIN, DHTTYPE);      // Inicialização do sensor DHT11 no pino 2
 
@@ -46,7 +46,7 @@ int leituras_intensidadeluz[NUM_LEITURAS];
 int contagem_leituras = 0;
 
 unsigned long previousMillis = 0;
-const long interval = 2000; // Intervalo de tempo desejado em milissegundos
+const long interval = 5000; // Intervalo de tempo desejado em milissegundos
 
 void setup() {
   Serial.println(F("DHT11 example!"));
@@ -62,7 +62,9 @@ void setup() {
 
   lcd.begin(16, 2);             // Inicialização do LCD com 16 colunas e 2 linhas
   lcd.setCursor(0, 1);          // Configuração do cursor para a segunda linha
-  lcd.print("LemmaTech");  
+  lcd.print("LemmaTech");
+
+  delay(2000);
 }
 
 void loop() {
@@ -97,7 +99,7 @@ void loop() {
       digitalWrite(ledAmarelo, LOW);
       digitalWrite(ledVerde, LOW);
       if (currentMillis - previousMillis >= interval) {
-        tone(buzina, 1000, 2500);
+        //tone(buzina, 1000, 2500);
         previousMillis = currentMillis;
       }
     } else {
@@ -115,7 +117,7 @@ void loop() {
         digitalWrite(ledVermelho, LOW);
 
         if (currentMillis - previousMillis >= interval) {
-          tone(buzina, 500, 1500);
+         // tone(buzina, 500, 1500);
           previousMillis = currentMillis;
         }
       }
@@ -224,7 +226,7 @@ void loop() {
   Serial.println("Temperatura");
   Serial.println(temperatura);
 
-  delay(2000);
+  delay(1000);
 }
 
 // Função para calcular a média dos valores de um array
