@@ -35,7 +35,7 @@ int buzina = 4;        // Buzina
 int intencidadeluz;    // Variável para a intensidade da luz
 
 #define DHTPIN 2
-#define DHTTYPE DHT11   // DHT 22  (AM2302), AM2321
+#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
 
 DHT dht(DHTPIN, DHTTYPE);      // Inicialização do sensor DHT11 no pino 2
 
